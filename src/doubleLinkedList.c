@@ -2,7 +2,6 @@
 #include<stdlib.h>
 
 typedef struct linkedList {
-    // ���Ḯ��Ʈ ��� ����ü
     int data;
     struct linkedList* next;
     struct linkedList* pre;
