@@ -3,12 +3,14 @@
 #pragma warning(disable:4996)
 #include<string.h>
 #include<stdlib.h>
+
 void fuction_input(struct student[], int* cnt);
 void fuction_output(struct student[], int* cnt);
 void fuction_search(struct student[], int* cnt);
 void fuction_del(struct student[], int* cnt);
 void fuction_save(struct student[], int* cnt);
 void fuction_load(struct student[], int* cnt);
+
 struct student {
 	int num, korean, math, english, sum, avr; //�й�, ��������, ��������, ��������, �հ�, ���
 	char name[10]; // �̸� : �迭 ���� �ʼ�
