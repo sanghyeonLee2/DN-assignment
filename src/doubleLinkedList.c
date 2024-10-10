@@ -12,7 +12,6 @@ typedef struct linkedList {
 // �������� ũ��: 32bit = 4����Ʈ, 64bit = 8����Ʈ
 // ���: ���� ���� ����Ʈ���� �����Ͱ� ����Ǵ� �������
 // malloc = �޸𸮸� �Ҵ�, �� ��ȯ �ʼ�
-
 void inputList(NODE** head, int inputData, int* cnt) {
     NODE* newNode = (NODE*)malloc(sizeof(NODE));
     NODE* tmp = *head;
