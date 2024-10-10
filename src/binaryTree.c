@@ -1,15 +1,15 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-typedef struct treeNode { // 구조체 선언
+typedef struct treeNode { // ����Ʈ�� ��� ����ü
     int data;
     struct treeNode* left;
     struct treeNode* right;
 }NODE;
 
-int noPrint = 1; //조건을 위한 변수 초기화
+int noPrint = 1; //��¹��� �����ϱ� ���� ����
 
-NODE* new_node(int inputData, NODE** root) { 
+NODE* new_node(int inputData, NODE** root) { //��� ���� �Լ�
     NODE* newNode = (NODE*)malloc(sizeof(NODE));
     newNode->left = NULL;
     newNode->right = NULL;
@@ -144,72 +144,73 @@ void deleteTree(NODE** root, int inputData, NODE** preTmp, NODE** largestTmp) { 
     }
 }
 
+
 int main() {
-    int input, inputData; //������ ���α׷� ��ȣ, �Է��� ����� ������   
-    NODE* root = NULL; // �ʱ� ��Ʈ����� ���� NULL�� �ʱ�ȭ
-    NODE* preTmp; //���� ��� ���� ��� ������ ����
-    NODE* largestTmp; //����� ���� ����Ʈ�� �� ���� ū �����͸� ������ ��� ������ ����
+    int input, inputData; //프로그램 번호와 입력받을 데이터를 저장하는 변수   
+    NODE* root = NULL; // 초기 트리 루트는 NULL로 초기화
+    NODE* preTmp; //이전 노드를 저장하는 변수
+    NODE* largestTmp; //중위 순회를 통해 가장 큰 데이터를 저장하는 변수
 
     while (1) {
-        printf("---------------------------------------\n1. �Է� 2. ��� 3. �˻� 4. ���� 5. ����\n---------------------------------------\n������ ���α׷� ��ȣ�� �Է��ϼ��� : ");
+        printf("---------------------------------------\n1. 입력 2. 출력 3. 검색 4. 삭제 5. 종료\n---------------------------------------\n원하는 프로그램 번호를 입력하세요 : ");
         scanf_s("%d", &input);
         switch (input) {
         case 1:
-            printf("---------------------------------------\n������ ���� �Է��ϼ���: ");
+            printf("---------------------------------------\n저장할 데이터를 입력하세요: ");
             scanf_s("%d", &inputData);
-            inputTree(&root, inputData); //&root �ּҸ� ���ڷ� ����   
-            printf("---------------------------------------\n�Է� �Ϸ�!\n");
+            inputTree(&root, inputData); //&root 주소를 매개변수로 전달   
+            printf("---------------------------------------\n입력 완료!\n");
             break;
         case 2:
             if (root == NULL) {
-                printf("---------------------------------------\n��尡 �����ϴ�.\n");
+                printf("---------------------------------------\n트리가 비어있습니다.\n");
                 break;
             }
             else {
-                printf("---------------------------------------\n����: ");
+                printf("---------------------------------------\n전위 순회: ");
                 preorder(&root);
-                printf("\n\n����: ");
+                printf("\n\n중위 순회: ");
                 inorder(&root, &largestTmp);                
-                printf("\n\n����: ");
+                printf("\n\n후위 순회: ");
                 postorder(&root);
                 printf("\n");
                 break;
             }
         case 3:
             if (root == NULL) {
-                printf("---------------------------------------\n��尡 �����ϴ�.\n");
+                printf("---------------------------------------\n트리가 비어있습니다.\n");
                 break;
-           }
+            }
             else {
-                printf("---------------------------------------\nã�� ������ ���� �Է��ϼ��� : ");
+                printf("---------------------------------------\n찾을 데이터를 입력하세요: ");
                 scanf_s("%d", &inputData);
                 if (searchTree(&root, inputData, &preTmp) == NULL) {
                     printf("\n%d: (x)\n", inputData);
                 }
                 else {
-                    printf("\n%d: (0)\n", inputData);
+                    printf("\n%d: (o)\n", inputData);
                 }
             }
             break;
         case 4:
             if (root == NULL) {
-                printf("---------------------------------------\n��尡 �����ϴ�.\n");
+                printf("---------------------------------------\n트리가 비어있습니다.\n");
                 break;
             }
             else {
-                printf("---------------------------------------\n������ ����� �����͸� �Է��ϼ���: ");
+                printf("---------------------------------------\n삭제할 데이터를 입력하세요: ");
                 scanf_s("%d", &inputData);
                 deleteTree(&root, inputData, &preTmp, &largestTmp);
-                printf("---------------------------------------\n���� �Ϸ�!\n");
+                printf("---------------------------------------\n삭제 완료!\n");
             }
             break;
         case 5:
-            printf("---------------------------------------\n����");
+            printf("---------------------------------------\n종료");
             return 0;
         default:
-            printf("---------------------------------------\n�߸��� �Է��Դϴ�.\n");
+            printf("---------------------------------------\n잘못된 입력입니다.\n");
             break;
         }
     }
-    free(root); //�޸� ��� �� free();�� �ݳ�
+    free(root); //메모리 해제
 }
