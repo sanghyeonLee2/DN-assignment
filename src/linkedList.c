@@ -78,18 +78,18 @@ int main() {
     NODE* head = NULL;
 
     while (1) {
-        printf("1. �Է� 2. ��� 3. �˻� 4. ���� 5. ����\n������ ���α׷� ��ȣ�� �Է��ϼ��� : ");
+        printf("1. 입력 2. 출력 3. 검색 4. 삭제 5. 종료\n원하는 프로그램 번호를 입력하세요 : ");
         scanf_s("%d", &input);
         switch (input) {
         case 1:
-            printf("������ ���� �Է��ϼ��� :");
+            printf("저장할 데이터를 입력하세요 :");
             scanf_s("%d", &inputData);
             inputList(&head, inputData, &cnt);
             break;
 
         case 2:
             if (cnt == 0) {
-                printf("����� �����Ͱ� �����ϴ�.\n");
+                printf("저장된 데이터가 없습니다.\n");
                 break;
             }
             else {
@@ -99,11 +99,11 @@ int main() {
 
         case 3:
             if (cnt == 0) {
-                printf("ã�� �����Ͱ� �����ϴ�.\n");
+                printf("찾을 데이터가 없습니다.\n");
                 break;
             }
             else {
-                printf("ã�� ������ ���� �Է��ϼ��� :");
+                printf("찾을 데이터를 입력하세요 :");
                 scanf_s("%d", &inputData);
                 if (inputData == head->data) {
                     printf("%d : (o)\n", inputData);
@@ -122,15 +122,15 @@ int main() {
 
         case 4:
             if (cnt == 0) {
-                printf("������ �����Ͱ� �����ϴ�.\n");
+                printf("삭제할 데이터가 없습니다.\n");
                 break;
             }
             else {
-                printf("������ ������ ���� �Է��ϼ��� :");
+                printf("삭제할 데이터를 입력하세요 :");
                 scanf_s("%d", &inputData);
                 searchList(head, inputData, &searchCnt);
                 if (searchCnt == 0) {
-                    printf("�����Ͱ� �����ϴ�.\n");
+                    printf("데이터가 없습니다.\n");
                     break;
                 }
                 deletetList(&head, inputData, &cnt);
@@ -142,11 +142,9 @@ int main() {
             return 0;
 
         default:
-            printf("�߸��� �Է��Դϴ�.\n");
+            printf("잘못된 입력입니다.\n");
             break;
-
         }
     }
     free(head);
-    //�޸� ��� �� free();�� �ݳ�
 }
