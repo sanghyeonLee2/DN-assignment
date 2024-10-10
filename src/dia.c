@@ -4,7 +4,7 @@ int main()
     while (1)
     {
         int star, cnt = 0;
-        printf("���� �Է��Ͻÿ� :");
+        printf("갯수 입력 :");
         scanf_s("%d", &star);
         if (star % 2 == 0) { //�Է��� ���� ¦�� �϶�
             cnt = star / 2 - 1;
