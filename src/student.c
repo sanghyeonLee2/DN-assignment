@@ -3,14 +3,12 @@
 #pragma warning(disable:4996)
 #include<string.h>
 #include<stdlib.h>
-
 void fuction_input(struct student[], int* cnt);
 void fuction_output(struct student[], int* cnt);
 void fuction_search(struct student[], int* cnt);
 void fuction_del(struct student[], int* cnt);
 void fuction_save(struct student[], int* cnt);
 void fuction_load(struct student[], int* cnt);
-
 struct student {
 	int num, korean, math, english, sum, avr; //�й�, ��������, ��������, ��������, �հ�, ���
 	char name[10]; // �̸� : �迭 ���� �ʼ�
@@ -20,8 +18,8 @@ int main() {
 	int input, cnt = 0; // cnt = ���� �л��� ��
 	struct student p[6];
 	while (1) {
-		printf("------------------------------------------------\n1.�Է� 2.��� 3.�˻� 4.���� 5.���� 6.�ε� 7.����\n------------------------------------------------\n");
-		printf("������ ��ȣ�� �Է��ϼ��� : ");
+		printf("------------------------------------------------\n1.입력 2.출력 3.검색 4.삭제 5.저장 6.로드 7.종료\n------------------------------------------------\n");
+		printf("입력할 번호를 입력하세요 : ");
 		scanf_s("%d", &input);
 		printf("------------------------------------------------\n");
 		switch (input) {
@@ -32,7 +30,7 @@ int main() {
 		case 2://���
 			fuction_output(p, &cnt);
 			if (cnt == 0) {
-				printf("�Էµ� �л��� �����ϴ�.\n");
+				printf("출력할 학생 정보가 없습니다.\n");
 			}
 			break;
 
@@ -42,7 +40,7 @@ int main() {
 				break;
 			}
 			else {
-				printf("�Էµ� �л��� �����ϴ�.\n");
+				printf("검색한 정보를 찾을 수 없습니다.\n");
 				break;
 			}
 
@@ -52,7 +50,7 @@ int main() {
 				break;
 			}
 			else {
-				printf("�Էµ� �л��� �����ϴ�.\n");
+				printf("검색한 정보를 찾을 수 없습니다.\n");
 				break;
 			}
 
@@ -65,11 +63,11 @@ int main() {
 			break;
 
 		case 7://����
-			printf("���� �Ǿ����ϴ�.\n");
+			printf("종료.\n");
 			return 0;
 
 		default:
-			printf("�߸��� �Է� �Դϴ�.\n");
+			printf("1 ~7 의 숫자만 입력하시오.\n");
 			break;
 
 		}
@@ -78,25 +76,25 @@ int main() {
 void fuction_input(struct student p[6], int* cnt) {
 	int temp;
 	char nametemp[10];
-	printf("�й��� �Է��ϼ��� : ");
+	printf("학번을 입력하세요 : ");
 	scanf("%d", &p[*cnt].num);
 	printf("------------------------------------------------\n");
 	for (int i = 0; i < *cnt; i++) {
 		if (p[i].num == p[*cnt].num) {
-			printf("���� �й��Դϴ�. \n------------------------------------------------\n");
+			printf("입력이 완료 되었습니다. \n------------------------------------------------\n");
 			return;
 		}
 	}
-	printf("�̸��� �Է��ϼ��� : ");
+	printf("이름을 입력하세요 : ");
 	scanf("%s", p[*cnt].name);
 	printf("------------------------------------------------\n");
-	printf("���������� �Է��ϼ��� : ");
+	printf("국어 점수를 입력하세요 : ");
 	scanf("%d", &p[*cnt].korean);
 	printf("------------------------------------------------\n");
-	printf("���������� �Է��ϼ��� : ");
+	printf("수학 점수를 입력하세요 : ");
 	scanf("%d", &p[*cnt].math);
 	printf("------------------------------------------------\n");
-	printf("���������� �Է��ϼ��� : ");
+	printf("영어 점수를 입력하세요 : ");
 	scanf("%d", &p[*cnt].english);
 	p[*cnt].sum = p[*cnt].korean + p[*cnt].math + p[*cnt].english;
 	p[*cnt].avr = (p[*cnt].korean + p[*cnt].math + p[*cnt].english) / 3;
@@ -139,29 +137,29 @@ void fuction_input(struct student p[6], int* cnt) {
 
 void fuction_output(struct student p[6], int* cnt) {
 	for (int i = 0; i < *cnt; i++) {
-		printf("�й� : %d �̸� : %s �������� : %d �������� : %d �������� : %d �������� : %d ������� : %d\n", p[i].num, p[i].name, p[i].korean, p[i].math, p[i].english, p[i].sum, p[i].avr);
+		printf("학번 : %d 이름 : %s 국어 : %d 수학 : %d 영어 : %d 총합 : %d 평균 : %d\n", p[i].num, p[i].name, p[i].korean, p[i].math, p[i].english, p[i].sum, p[i].avr);
 	}
 }
 void fuction_search(struct student p[6], int* cnt) {
 	int search;
 	int searchcnt = 0;//ã�� �л� ��
-	printf("ã�� �л� �й��� �Է��ϼ��� : ");
+	printf("검색할 학생의 학번을 입력하세요 : ");
 	scanf("%d", &search);
 	printf("------------------------------------------------\n");
 	for (int i = 0; i < *cnt; i++) {
 		if (p[i].num == search) {
-			printf("�й� : %d �̸� : %s �������� : %d �������� : %d �������� : %d �������� : %d ������� : %d\n", p[i].num, p[i].name, p[i].korean, p[i].math, p[i].english, p[i].sum, p[i].avr);
+			printf("학번 : %d 이름 : %s 국어 : %d 수학 : %d 영어 : %d 총합 : %d 평균 : %d\n", p[i].num, p[i].name, p[i].korean, p[i].math, p[i].english, p[i].sum, p[i].avr);
 			searchcnt++;
 		}
 	}
 	if (searchcnt == 0) {
-		printf("ã�� �л��� �����ϴ�.\n");
+		printf("검색한 정보를 찾을 수 없습니다.\n");
 	}
 }
 void fuction_del(struct student p[6], int* cnt) {
 	int del;
 	int delcnt = 0;//������ �л� ��
-	printf("������ �л��� �й��� �Է��ϼ��� : ");
+	printf("삭제할 학생의 학번을 입력하세요 : ");
 	scanf("%d", &del);
 	printf("------------------------------------------------\n");
 	for (int i = 0; i < *cnt; i++) {
@@ -181,11 +179,11 @@ void fuction_del(struct student p[6], int* cnt) {
 		}
 	}
 	if (delcnt == 0) {
-		printf("������ �л��� �����ϴ�.\n");
+		printf("찾을 수 없습니다.\n");
 		return;//������ �л��� ������ ��� �� ��ȯ
 	}
 	else {
-		printf("�����Ǿ����ϴ�.\n------------------------------------------------\n");
+		printf("삭제 되었습니다.\n------------------------------------------------\n");
 		(*cnt)--;
 	}
 }
@@ -195,7 +193,7 @@ void fuction_save(struct student p[6], int* cnt) {
 		fprintf(fp, "%d %s %d %d %d %d %d\n", p[i].num, p[i].name, p[i].korean, p[i].math, p[i].english, p[i].sum, p[i].avr);
 	}
 	fclose(fp);
-	printf("����Ǿ����ϴ�.\n");
+	printf("저장되었습니다\n");
 }
 
 void fuction_load(struct student p[6], int* cnt) {
